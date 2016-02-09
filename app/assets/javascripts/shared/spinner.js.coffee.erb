@@ -1,0 +1,15 @@
+class Spinner
+  constructor: (@parent) ->
+    @element = $("<img src='<%= image_path('ajax-loader.gif') %>' />")
+    $(@parent).append(@element)
+
+  get: (url) ->
+    $.get(url).success(@success).fail(@fail)
+
+  success: (data) =>
+    @element.remove()
+
+  fail: (data) =>
+    $(@parent).html("<img src='<%= image_path('ajax-failed.png') %>' />")
+
+window.Spinner = Spinner

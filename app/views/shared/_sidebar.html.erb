@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong>Projects</strong> <span class="badge"><%= projects.size %></span>
+  </li>
+
+  <% projects.each do |project| %>
+    <li class="list-group-item">
+      &nbsp;&nbsp;&nbsp;<%= link_to project['name'], resources_path(project['slug']) %>
+    </li>
+  <% end %>
+</ul>

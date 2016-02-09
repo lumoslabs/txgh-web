@@ -1,0 +1,15 @@
+<%= render partial: 'resources/shared/javascripts' %>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'resources/index_action', cache: true %>
+<% end %>
+
+<div class="col-sm-3">
+  <%= render partial: 'shared/sidebar', locals: { projects: @projects } %>
+</div>
+<div class="col-sm-9">
+  <div class="row">
+    <h1><%= @project['name'] %></h1>
+    <div class="resource-table" data-slug="<%= @project['slug'] %>"></div>
+  </div>
+</div>
