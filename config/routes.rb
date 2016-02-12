@@ -54,7 +54,9 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  scope 'projects/:project_slug' do
+  root 'projects#index'
+
+  resources :projects, only: [:index], param: :slug do
     resources :resources, only: [:index, :show], param: :slug do
       get 'pull', as: :pull
       get 'push', as: :push

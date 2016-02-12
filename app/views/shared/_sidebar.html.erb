@@ -5,7 +5,7 @@
 
   <% projects.each do |project| %>
     <li class="list-group-item">
-      &nbsp;&nbsp;&nbsp;<%= link_to project['name'], resources_path(project['slug']) %>
+      &nbsp;&nbsp;&nbsp;<%= link_to project['name'], project_resources_path(project['slug']) %>
     </li>
   <% end %>
 </ul>
