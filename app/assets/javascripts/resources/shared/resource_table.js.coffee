@@ -86,6 +86,7 @@ class ResourceTable
 
   update: (data) ->
     for resource in data
-      new ResourceRow(@, resource, @options)
+      if resource.branch?
+        new ResourceRow(@, resource, @options)
 
 window.ResourceTable = ResourceTable
