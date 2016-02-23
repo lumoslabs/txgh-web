@@ -57,7 +57,7 @@ class Transifex::ResourcesController < ApplicationController
   def stat_fields(stats)
     stats.each_with_object({}) do |(lang, stats), ret|
       ret[lang] = {
-        completed: stats.completed
+        completed: stats.completed.to_i
       }
     end
   end

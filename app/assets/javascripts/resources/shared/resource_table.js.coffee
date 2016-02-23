@@ -1,5 +1,5 @@
 class ResourceRow
-  template: (data) ->
+  resource_template: (data) ->
     $("""
       <tr class='resource-row' data-slug='#{data.slug}'>
         <td>#{data.name}</td>
@@ -13,19 +13,45 @@ class ResourceRow
       </tr>
     """)
 
+  stats_template: ->
+    $("""
+      <tr class='resource-stats'>
+        <td colspan='5'>
+          <div class='resource-stat-list'></div>
+        </td>
+      </tr>
+    """)
+
+  stat_template: (data) ->
+    $("""
+      <div class='col-sm-3'>
+        <div class='pull-left resource-stat-progress'>
+          <div class="progress">
+            <div class='progress-bar' style='width: #{data.percentage}%'>#{data.percentage}%</div>
+          </div>
+        </div>
+        <div class='pull-left resource-stat-language'>#{data.language}</div>
+      </div>
+    """)
+
   constructor: (@parent, @resource, @options = {}) ->
-    @row = @template(@resource)
+    @resource_row = @resource_template(@resource)
+    @stats_row = @stats_template(@resource)
+    @stat_list = $('.resource-stat-list', @stats_row)
     resource_slug = @deBranchResourceSlug(@resource.slug, @resource.branch)
     that = @
 
-    $('.action-push', @row).click ->
+    $('.action-push', @resource_row).click ->
       that.trigger('onPushClicked', @, that.parent.slug, resource_slug, that.resource.branch)
 
-    $('.action-pull', @row).click ->
+    $('.action-pull', @resource_row).click ->
       that.trigger('onPullClicked', @, that.parent.slug, resource_slug, that.resource.branch)
 
-    @parent.element.append(@row)
-    @completion = $('.completion', @row)
+    @resource_row.click => @stats_row.toggle()
+
+    @parent.element.append(@resource_row)
+    @parent.element.append(@stats_row)
+    @completion = $('.completion', @resource_row)
 
     spinner = new Spinner(@completion)
 
@@ -54,6 +80,13 @@ class ResourceRow
   update: (data) ->
     @completion.text("#{@averageCompletedPct(data.stats)}%")
 
+    for lang, stat of data.stats
+      @stat_list.append(
+        @stat_template(
+          percentage: stat.completed, language: lang
+        )
+      )
+
   trigger: (method, args...) ->
     @options[method].apply(@, args) if @options[method]?
 
@@ -61,7 +94,7 @@ class ResourceRow
 class ResourceTable
   template: ->
     template = $("""
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover resource-table">
         <tr>
           <th>File</th>
           <th>Branch</th>
