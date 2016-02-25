@@ -59,7 +59,7 @@ class Transifex::ProjectsController < ApplicationController
       }
     )
 
-    config['data']
+    config['data'] if config.include?('data')
   end
 
   def config_url_for(project_config, branch)
