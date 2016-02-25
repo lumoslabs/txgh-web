@@ -10,6 +10,13 @@
 <div class="col-sm-9">
   <div class="row">
     <h1><%= @project['name'] %></h1>
+    <hr>
+    <h3>Branches</h3>
+    <div class="row no-gutter">
+      <div class="branch-list" data-slug="<%= @project['slug'] %>"></div>
+    </div>
+    <hr>
+    <h3>Resources</h3>
     <div class="resource-table" data-slug="<%= @project['slug'] %>"></div>
   </div>
 </div>

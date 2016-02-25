@@ -5,6 +5,7 @@ gem 'httparty', '~> 0.13'
 gem 'jquery-rails'
 gem 'js-routes', '~> 1.2'
 gem 'rails', '4.2.5.1'
+gem 'zipline'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'
 gem 'transifex-ruby', github: 'camertron/transifex-ruby'
@@ -14,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.3'
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery.fileDownload', '~> 1.4'
 end
 
 group :production do

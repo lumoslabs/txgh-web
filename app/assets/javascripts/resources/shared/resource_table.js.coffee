@@ -2,10 +2,10 @@ class ResourceRow
   resource_template: (data) ->
     $("""
       <tr class='resource-row' data-slug='#{data.slug}'>
-        <td>#{data.name}</td>
+        <td><a href="#{@resource_href(data.slug)}" target="_blank">#{data.name}</a></td>
         <td>#{data.branch || '(Unknown)'}</td>
         <td>#{(data.author || '(Unknown)').replace('_', ' ')}</td>
-        <td class='completion'></td>
+        <td><a class='completion'></a></td>
         <td class='actions'>
           <button class='btn btn-default btn-xs action-push'>Push</button>
           <button class='btn btn-default btn-xs action-pull'>Pull</button>
@@ -42,16 +42,22 @@ class ResourceRow
     that = @
 
     $('.action-push', @resource_row).click ->
-      that.trigger('onPushClicked', @, that.parent.slug, resource_slug, that.resource.branch)
+      Utils.trigger(
+        that.options, 'onPushClicked', @,
+        that.parent.slug, resource_slug, that.resource.branch
+      )
 
     $('.action-pull', @resource_row).click ->
-      that.trigger('onPullClicked', @, that.parent.slug, resource_slug, that.resource.branch)
-
-    @resource_row.click => @stats_row.toggle()
+      Utils.trigger(
+        that.options, 'onPullClicked', @,
+        that.parent.slug, resource_slug, that.resource.branch
+      )
 
     @parent.element.append(@resource_row)
     @parent.element.append(@stats_row)
     @completion = $('.completion', @resource_row)
+
+    @completion.click => @stats_row.toggle()
 
     spinner = new Spinner(@completion)
 
@@ -87,13 +93,13 @@ class ResourceRow
         )
       )
 
-  trigger: (method, args...) ->
-    @options[method].apply(@, args) if @options[method]?
+  resource_href: (resource_slug) ->
+    "https://www.transifex.com/lumos-labs/#{@parent.slug}/#{resource_slug}"
 
 
 class ResourceTable
   template: ->
-    template = $("""
+    $("""
       <table class="table table-striped table-hover resource-table">
         <tr>
           <th>File</th>
@@ -105,12 +111,11 @@ class ResourceTable
       </table>
     """)
 
-    template
-
   constructor: (@parent, @options = {}) ->
     @element = @template()
     @parent.append(@element)
     @slug = $(@parent).data('slug')
+    @rows = []
 
     @spinner = new Spinner(@element)
     url = Routes.transifex_resources_path(project_slug: @slug)
@@ -120,6 +125,8 @@ class ResourceTable
   update: (data) ->
     for resource in data
       if resource.branch?
-        new ResourceRow(@, resource, @options)
+        @rows.push(new ResourceRow(@, resource, @options))
+
+    Utils.trigger(@options, 'onLoad', @)
 
 window.ResourceTable = ResourceTable

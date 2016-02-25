@@ -14,4 +14,10 @@
   .resource-stat-language {
     margin-left: 10px;
   }
+
+  .resource-row {
+    .completion {
+      cursor: pointer;
+    }
+  }
 }

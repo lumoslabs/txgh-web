@@ -30,16 +30,18 @@ class ResourcesController < ApplicationController
   private
 
   def url_for(action)
-    base = @project['url']
-
     query = {
       'project_slug' => @project['slug'],
       'resource_slug' => params[:resource_slug],
       'branch' => params[:branch],
     }
 
+    build_url(@project['url'], action, query)
+  end
+
+  def build_url(base, path, query)
     querystring = query.map { |k, v| "#{k}=#{CGI.escape(v)}" }.join('&')
-    "#{base}/#{action}?#{querystring}"
+    "#{base}/#{path}?#{querystring}"
   end
 
   def set_project
