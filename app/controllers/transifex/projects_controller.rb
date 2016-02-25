@@ -59,7 +59,9 @@ class Transifex::ProjectsController < ApplicationController
       }
     )
 
-    config['data'] if config.include?('data')
+    if config.is_a?(Hash) && config.include?('data')
+      config['data']
+    end
   end
 
   def config_url_for(project_config, branch)
