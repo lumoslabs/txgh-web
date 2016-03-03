@@ -1,6 +1,6 @@
 $ ->
   doPush = (btn, projectSlug, resourceSlug, branch) ->
-    url = Routes.resource_push_path(
+    url = Routes.project_resource_push_path(
       project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
     )
 
@@ -8,7 +8,7 @@ $ ->
       alert('Push failed. Try again.')
 
   doPull = (btn, projectSlug, resourceSlug, branch) ->
-    url = Routes.resource_pull_path(
+    url = Routes.project_resource_pull_path(
       project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
     )
 
