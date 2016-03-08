@@ -25,11 +25,8 @@ class Transifex::ProjectsController < ApplicationController
     files = config['resources'].lazy.flat_map do |resource_config|
       resource_slug = "#{resource_config['resource_slug']}-#{config['branch_slug']}"
       resource = client.resource(project['slug'], resource_slug)
-      resource_langs = languages.reject do |lang|
-        lang.language_code == resource_config['source_lang']
-      end
 
-      resource_langs.lazy.map do |language|
+      languages.lazy.map do |language|
         [
           StringIO.new(resource.translation(language.language_code)['content']),
           path_for(resource_config, language.language_code)
