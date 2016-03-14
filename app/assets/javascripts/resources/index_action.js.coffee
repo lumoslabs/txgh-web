@@ -1,19 +1,27 @@
 $ ->
   doPush = (btn, projectSlug, resourceSlug, branch) ->
-    url = Routes.project_resource_push_path(
-      project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
-    )
+    msg = "Are you sure you want to push strings up to " +
+      "#{projectSlug}.#{resourceSlug} from #{branch}?"
 
-    _get(url, btn).fail ->
-      alert('Push failed. Try again.')
+    if confirm(msg)
+      url = Routes.project_resource_push_path(
+        project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
+      )
+
+      _get(url, btn).fail ->
+        alert('Push failed. Try again.')
 
   doPull = (btn, projectSlug, resourceSlug, branch) ->
-    url = Routes.project_resource_pull_path(
-      project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
-    )
+    msg = "Are you sure you want to pull translations from " +
+      "#{projectSlug}.#{resourceSlug} into #{branch}?"
 
-    _get(url, btn).fail ->
-      alert('Pull failed. Try again.')
+    if confirm(msg)
+      url = Routes.project_resource_pull_path(
+        project_slug: projectSlug, resource_slug: resourceSlug, branch: branch
+      )
+
+      _get(url, btn).fail ->
+        alert('Pull failed. Try again.')
 
   doDownload = (btn, branch, projectSlug) ->
     url = Routes.transifex_download_path(
