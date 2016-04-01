@@ -24,10 +24,9 @@ $ ->
         alert('Pull failed. Try again.')
 
   doDownload = (btn, branch, projectSlug) ->
-    url = Routes.transifex_download_path(
-      project_slug: projectSlug, branch: branch, format: 'json'
-    )
-
+    debugger
+    baseUrl = $('.branch-list').data('url')
+    url = "#{baseUrl}/download.zip?project_slug=#{projectSlug}&branch=#{branch}"
     $(btn).attr('disabled', 'disabled')
 
     $.fileDownload(url).fail (response) ->

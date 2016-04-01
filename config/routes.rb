@@ -65,7 +65,6 @@ Rails.application.routes.draw do
 
   namespace :transifex do
     scope 'projects/:project_slug' do
-      get 'download' => 'projects#download', as: :download
       resources :resources, only: [:index, :show], param: :slug
     end
   end
