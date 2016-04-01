@@ -24,7 +24,6 @@ $ ->
         alert('Pull failed. Try again.')
 
   doDownload = (btn, branch, projectSlug) ->
-    debugger
     baseUrl = $('.branch-list').data('url')
     url = "#{baseUrl}/download.zip?project_slug=#{projectSlug}&branch=#{branch}"
     $(btn).attr('disabled', 'disabled')
