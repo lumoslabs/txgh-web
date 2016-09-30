@@ -9,6 +9,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'
 gem 'transifex-ruby', github: 'camertron/transifex-ruby'
 gem 'uglifier', '>= 1.3.0'
+gem 'dashing-rails'
+gem 'dashing-hotness'
+gem 'foreman'
 
 # assets
 gem 'bootstrap-sass', '~> 3.3'

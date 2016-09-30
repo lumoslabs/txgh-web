@@ -1,0 +1,9 @@
+docker*
+.bundle/
+.env*
+.git*
+vendor/
+spec/
+tmp/
+log/
+dump.rdb
