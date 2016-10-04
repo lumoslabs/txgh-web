@@ -1,6 +1,6 @@
 require 'txgh_web/stats/translation_delta'
 
-Dashing.scheduler.every '6h' do
+Dashing.scheduler.every '6h', first_in: 0 do
   def delta_for(repo_name)
     TranslationDelta.new(repo_name).delta
   end
