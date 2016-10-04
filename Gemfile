@@ -13,6 +13,8 @@ gem 'dashing-rails'
 gem 'dashing-hotness'
 gem 'foreman'
 
+gem 'txgh', '~> 6.0'
+
 # assets
 gem 'bootstrap-sass', '~> 3.3'
 
