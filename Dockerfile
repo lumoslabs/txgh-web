@@ -1,4 +1,4 @@
-FROM ruby:2.2
+FROM ruby:2.5
 
 RUN apt-get update && apt-get install -y redis-server mysql-client sqlite3 nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
