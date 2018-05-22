@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/camertron/transifex-ruby.git
+  remote: git://github.com/camertron/transifex-ruby.git
   revision: 9796d518999ab151734ec266d4b2bb0e858aa4ae
   specs:
     transifex-ruby (0.0.4)
@@ -228,4 +228,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
