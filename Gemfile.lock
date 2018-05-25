@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/camertron/transifex-ruby.git
-  revision: 9796d518999ab151734ec266d4b2bb0e858aa4ae
+  revision: 7cbbd24fca234d91787a9c9a80f1fc5da5ece068
   specs:
     transifex-ruby (0.0.4)
       faraday (~> 0.9)
