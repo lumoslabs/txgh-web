@@ -5,7 +5,7 @@ docker_repo_name='lumoslabs/txgh-web'
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
 echo $TRAVIS_COMMIT > REVISION
-export COMMIT=${TRAVIS_COMMIT::8}
+export COMMIT=${TRAVIS_COMMIT::7}
 
 set -x
 docker build -t quay.io/$docker_repo_name:$TRAVIS_BRANCH .
