@@ -28,7 +28,7 @@ end
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'pry-nav'
+  gem 'pry-byebug'
 end
 
 group :development do

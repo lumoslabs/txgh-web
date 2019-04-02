@@ -70,7 +70,8 @@ In order for projects to be listed in the txgh-web interface, you'll need to add
 ```yaml
 - slug: firstproject
   name: First Project
-  url: http://mytxgh.com
+  external_url: http://mytxgh.com
+  internal_url: http://mytxgh.mybizness.local
 - slug: secondproject
   name: Second Project
   url: http://mytxgh.com
@@ -81,7 +82,8 @@ In order for projects to be listed in the txgh-web interface, you'll need to add
 
 * **`slug`**: The project's Transifex project slug.
 * **`name`**: Human-readable display name for the project.
-* **`url`**: URL to your running txgh instance.
+* **`external_url`**: URL to your running txgh instance, accessible via a browser.
+* **`internal_url`**: URL to your running txgh instance, accessible via txgh-web. In most cases this will be the same as `external_url`, but provides the option of specifying a URL that can be resolved inside your hosting provider's network.
 
 Running Tests
 ---

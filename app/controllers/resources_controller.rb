@@ -36,7 +36,7 @@ class ResourcesController < ApplicationController
       'branch' => params[:branch],
     }
 
-    build_url(@project['url'], action, query)
+    build_url(@project['internal_url'], action, query)
   end
 
   def build_url(base, path, query)
